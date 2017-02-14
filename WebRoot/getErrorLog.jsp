@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	DbDao dao = new DbDao("oracle.jdbc.driver.OracleDriver",
     			"jdbc:oracle:thin:@localhost:1521:oracle","system","admin");
     	//查询在线用户的记录
-    	ResultSet rs = dao.query("select createDate,thread,level,class,message from SCOTT.tb_log where level = error");
+    	ResultSet rs = dao.query("select createDate,thread,logLevel,class,message from SCOTT.tb_log where logLevel = 'error'");
     	while(rs.next()){
     %>
     <tr>
@@ -39,6 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<td><%=rs.getString(2) %>
     	<td><%=rs.getString(3) %>
     	<td><%=rs.getString(4) %>
+    	<td><%=rs.getString(5) %>
     </tr>
     <%	
     	}
