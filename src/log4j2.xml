@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <Configuration status="off">  
 <appenders>  
-    <Console name="Console" target="SYSTEM_OUT">  
+    <Console name="STDOUT" target="SYSTEM_OUT">  
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>  
     </Console>  
   </appenders>  
@@ -9,8 +9,9 @@
     <root level="all">  
       <appender-ref ref="Console"/>  
     </root>  
-  </loggers>  
- <Appenders>  
+  </loggers>
+  
+  <appenders>  
      <JDBC name="databaseAppender" tableName="tb_log">  
      <ConnectionFactory class="connection.ConnectionFactory" method="getDatabaseConnection" />  
      	<Column name="createdate" isEventTimestamp="true"/>  
@@ -19,10 +20,10 @@
      	<Column name="loglevel" pattern="%level" />  
      	<Column name="message" pattern="%message"/>  
     </JDBC>  
- </Appenders>   
+ </appenders>   
  <Loggers>
     <Root level="all">
       <AppenderRef ref="databaseAppender"/>
     </Root>
-  </Loggers> 
+  </Loggers>  
 </Configuration> 

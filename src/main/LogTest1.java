@@ -17,7 +17,6 @@ public class LogTest1 extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		System.out.println("Ö´ÐÐ");
 		Timer t = new Timer(5*1000, new ActionListener() {
 			
 			@Override
