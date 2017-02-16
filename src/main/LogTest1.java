@@ -17,8 +17,8 @@ public class LogTest1 extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
+		System.out.println("初始化完成");
 		Timer t = new Timer(5*1000, new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Logger logger = Logger.getLogger(LogTest1.class);
@@ -28,6 +28,7 @@ public class LogTest1 extends HttpServlet{
 		        logger.info("This is info message.");  
 		        // 记录error级别的信息  
 		        logger.error("This is error message.");  
+		        System.out.println("输出日志");
 			}
 		});
 		t.start();

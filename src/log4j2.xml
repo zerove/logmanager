@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <Configuration status="off">  
-<appenders>  
-    <Console name="STDOUT" target="SYSTEM_OUT">  
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>  
-    </Console>  
+<appenders>
+	<Console name="Console" target="SYSTEM_OUT">  
+     	 <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>  
+   	</Console> 
+	
+	<JDBC name="databaseAppender" tableName="SCOTT.tb_log">  
+      	<ConnectionFactory class="connection.ConnectionFactory1" method="getDatabaseConnection" />
+     	<!-- <ConnectionFactory class="connection.PoolManager" method="getConnection" />  -->  
+     	<Column name="createdate" isEventTimestamp="true"/> 
+     	<Column name="thread" pattern="%thread" isUnicode="false"/>  
+     	<Column name="class" pattern="%class" isUnicode="false"/>
+     	<Column name="loglevel" pattern="%level" isUnicode="false"/> 
+     	<Column name="message" pattern="%message" isUnicode="false"/>  
+   	 </JDBC>
   </appenders>  
   <loggers>  
-    <root level="all">  
-      <appender-ref ref="Console"/>  
-    </root>  
+  	<root level="trace">  
+      	<appender-ref ref="Console"/>  
+      	<appender-ref ref="databaseAppender"/> 
+    </root> 
   </loggers>
-  
-  <appenders>  
-     <JDBC name="databaseAppender" tableName="tb_log">  
-     <ConnectionFactory class="connection.ConnectionFactory" method="getDatabaseConnection" />  
-     	<Column name="createdate" isEventTimestamp="true"/>  
-     	<Column name="thread" pattern="%thread" />  
-     	<Column name="class" pattern="%class"/>
-     	<Column name="loglevel" pattern="%level" />  
-     	<Column name="message" pattern="%message"/>  
-    </JDBC>  
- </appenders>   
- <Loggers>
-    <Root level="all">
-      <AppenderRef ref="databaseAppender"/>
-    </Root>
-  </Loggers>  
+    
 </Configuration> 
